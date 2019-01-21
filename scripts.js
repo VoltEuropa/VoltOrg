@@ -62,6 +62,8 @@ function generateNodes(rawData) {
 
     }
 
+    console.log(tagIds)
+    console.log(nodes)
     return nodes;
 }
 
