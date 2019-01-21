@@ -62,8 +62,6 @@ function generateNodes(rawData) {
 
     }
 
-    console.log(JSON.stringify(nodes));
-
     return nodes;
 }
 
@@ -88,8 +86,6 @@ function generateTags(data) {
         }
     }
 
-    console.log(JSON.stringify(tags));
-
     return tags;
 }
 
@@ -99,25 +95,6 @@ function sortMembers(a, b) {
     if (a.team > b.team)
         return 1;
     return 0;
-}
-
-/**
- * Parse CSV data to be used in the application
- */
-function parseData() {
-    //Read CSV data
-    var csv = document.getElementById('csv').innerHTML;
-
-    var data = Papa.parse(csv, {
-        download: false,
-        header: true,
-        dynamicTyping: true,
-        complete: function (results) {
-            return results;
-        }
-    });
-
-    return data.data;
 }
 
 function parseLocalData(evt) {
@@ -175,6 +152,8 @@ function parseLocalData(evt) {
                 tags: tags,
                 nodes: nodes,
             });
+
+            $('#setup').remove();
         }
     });
 }
