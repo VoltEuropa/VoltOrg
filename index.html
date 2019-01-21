@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Volt NL Organization by R&D NL</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
+</head>
+
+<body>
+
+<input type="file" id="csv-file" name="files"/>
+
+<div id="tree"></div>
+
+<textarea id="csv" style="display:none;">naam,team,titel
+Test Persoon 1,Board,Lead
+Test Persoon 2,Board,Penningmeester
+Test Persoon 3,Board/RD,Lead
+Test Persoon 4,Board/RD,Co-Lead
+Test Persoon 5,Board/RD/Social,Lead
+Test Persoon 6,Board/RD/Social,Co-Lead
+Test Persoon 7,Board/Expansion,Lead
+Test Persoon 8,Board/Expansion,Co-Lead
+Test Persoon 9,Board/Campaign,Lead
+Test Persoon 10,Board/Campaign,Co-Lead
+Test Persoon 11,Board/HR,Lead</textarea>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.2/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>
