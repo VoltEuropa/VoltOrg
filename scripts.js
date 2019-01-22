@@ -22,7 +22,10 @@ function generateNodes(rawData) {
 
         //if person is in the root group
         if (parentTag === "") {
-            tagIds[tag] = id;
+            //if this is the first person of the team.
+            if(tagIds[tag] === undefined) {
+                tagIds[tag] = id;
+            }
 
             nodes.push({
                 id: id,
@@ -32,23 +35,13 @@ function generateNodes(rawData) {
                 img: "https://balkangraph.com/js/img/empty-img-white.svg"
             });
         }
-        //else if already people in that team.
-        else if (tagIds[tag] !== undefined) {
-            pid = tagIds[parentTag];
-
-            nodes.push({
-                id: id,
-                pid: pid,
-                tags: [tag],
-                name: name,
-                title: title,
-                img: "https://balkangraph.com/js/img/empty-img-white.svg"
-            });
-        }
-        //else if this person is the first of the group
         else {
+            //if this is the first person of the team.
+            if (tagIds[tag] === undefined) {
+                tagIds[tag] = id;
+            }
+
             pid = tagIds[parentTag];
-            tagIds[tag] = id;
 
             nodes.push({
                 id: id,
@@ -71,7 +64,6 @@ function generateTags(data) {
     var tags = {};
 
     for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
         var teamArr = data[i].team.split('/');
 
         for (var j = 0; j < teamArr.length; j++) {
@@ -87,6 +79,8 @@ function generateTags(data) {
 
         }
     }
+
+    console.log(tags);
 
     return tags;
 }
@@ -114,8 +108,6 @@ function parseLocalData(evt) {
             var tags = generateTags(csvdata);
             var nodes = generateNodes(csvdata);
 
-            console.log(OrgChart.templates.ula.field_0);
-
             OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.ula);
             OrgChart.templates.myTemplate.rippleRadius = OrgChart.templates.ula.rippleRadius;
             OrgChart.templates.myTemplate.rippleColor = OrgChart.templates.ula.rippleColor;
@@ -134,7 +126,8 @@ function parseLocalData(evt) {
                             chart.exportPDF("VoltOrganization.pdf", true, nodeId);
                         }
                     },
-                    //png: {text: "Export PNG"}
+                    png: {text: "Export PNG"},
+                    svg: { text: "Export SVG" },
                 },
                 /*nodeMenu: {
                     details: { text: "Details" },
